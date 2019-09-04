@@ -96,7 +96,14 @@ class UsersContoller extends Controller
       // dump($id);
         $user = User::find($id);
 
+        $old_name = $user->name;
+
+        $filepath = "/uploads/".$old_name;
+        $path = public_path().$filepath;
+
         $user->delete();
+
+        rename($path, $path.'(removed)');
 
         \Session::put('success', 'User Removed.');
         return redirect(route('dashboard'));
