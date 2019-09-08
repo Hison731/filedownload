@@ -30,6 +30,7 @@ class MyfilesController extends Controller
             foreach($filesInFolder as $path) {
                 $file = pathinfo($path);
                 $file['linkTarget'] = $filepath.'/'.$path->getFilename();
+                $file['size'] = floor($path->getSize()/1024).' Kb';
                 $files[] = $file;
             }
         }
