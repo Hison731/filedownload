@@ -17,6 +17,7 @@ class MyfilesController extends Controller
     }
 
     public function index(){
+        date_default_timezone_set('US/Central');
         $today = date("Y-m-d");
         $newDate = date("dmY", strtotime($today));
 
