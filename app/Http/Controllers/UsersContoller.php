@@ -86,7 +86,9 @@ class UsersContoller extends Controller
 
         $user->save();
 
-        rename($path, $path1);
+        if(file_exists(public_path($path))){
+            rename($path, $path1);
+        }
 
         return redirect(route('dashboard'));
     }
