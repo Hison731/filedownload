@@ -15,6 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Main CSS-->
     <link rel="stylesheet" type="text/css" href="{{asset('template/css/main.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('template/css/style.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('template/css/jquery.fileupload.css')}}">
     <!-- Font-icon css-->
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -37,6 +38,7 @@
     <script src="{{asset('template/js/plugins/pace.min.js')}}"></script>
     <script src="{{asset('template/js/bootstrap-notify.min.js')}}"></script>
     <script src="{{asset('template/js/sweetalert.min.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.js"></script>
     <!-- Page specific javascripts-->
     <script>
         $.ajaxSetup({

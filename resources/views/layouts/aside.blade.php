@@ -11,7 +11,15 @@
     @if(Auth::user()->role_id == 1)
       <li><a class="app-menu__item {{ (request()->is('dashboard')) ? 'active' : '' }}" href="{{route('dashboard')}}"><i class="app-menu__icon fa fa-users"></i><span class="app-menu__label">Users</span></a></li>
     @else
-      <li><a class="app-menu__item {{ (request()->is('myaccount')) ? 'active' : '' }}" href="{{route('myaccount')}}"><i class="app-menu__icon fa fa-folder"></i><span class="app-menu__label">My files</span></a></li>
+      <li class="treeview is-expanded"><a class="app-menu__item {{ (request()->is('myaccount')) ? 'active' : '' }}" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-folder"></i><span class="app-menu__label" style="padding-left: 5px;">My files</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+        <ul class="treeview-menu">
+        @foreach ($dirlists as $key=>$item)
+          <li><a class="treeview-item" href="{{ route('showfiles', $item) }}"><i class="icon fa fa-folder"></i> {{$item}}</a></li>
+        @endforeach
+        </ul>
+      </li>
     @endif
+
+    
   </ul>
 </aside>

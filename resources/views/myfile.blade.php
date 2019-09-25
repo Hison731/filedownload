@@ -4,7 +4,7 @@
     <main class="app-content">
         <div class="app-title">
             <div>
-                <h1><i class="fa fa-folder"></i> My files</h1>
+                <h1><i class="fa fa-folder"></i> {{$newDate}}</h1>
                 <p>Table to display files that you have for special day</p>
             </div>
             <ul class="app-breadcrumb breadcrumb side">
@@ -13,7 +13,8 @@
             </ul>
         </div>
         <div class="row">
-            <div class="col-md-5">
+            <a class="btn btn-sm btn-success mb-2 ml-2" href="{{ route('download', $newDate) }}">Download All</a>
+            {{-- <div class="col-md-5">
                 <form action="{{ route('myaccount') }}" method="post" class="form-inline">
                     @csrf
 
@@ -21,12 +22,13 @@
                     <input type="date" class="form-control mb-2 mr-sm-2" id="date" name="date" value="{{ $today }}">
                     <button type="submit" class="btn btn-sm btn-success mb-2">Check</button>
                     @if (count($files) > 0)
-                    <a class="btn btn-sm btn-success mb-2 ml-2" href="{{ route('download', $today) }}">Download All</a>
+                    
                     @endif
 
                 </form>
 
-            </div>
+            </div> --}}
+            
             <div class="col-md-12">
 
                 <div class="tile">
@@ -48,7 +50,7 @@
                                         <td>{{$file['basename']}}</td>
                                         <td>{{$file['extension']}}</td>
                                         <td>{{$file['size']}}</td>
-                                        <td><a class="btn btn-success btn-sm" href="{{$file['linkTarget']}}" target="_blank">View <i class="fa fa-eye"></i></a></td>
+                                        <td><a class="btn btn-success btn-sm" href="/{{$file['linkTarget']}}" target="_blank">View <i class="fa fa-eye"></i></a></td>
                                     </tr>
                                 @endforeach
 

@@ -17,12 +17,24 @@ class MyfilesController extends Controller
     }
 
     public function index(){
-        date_default_timezone_set('US/Central');
-        $today = date("Y-m-d");
-        $newDate = date("dmY", strtotime($today));
 
         $username = Auth::user()->name;
-        $filepath = "/uploads/".$username."/".$newDate;
+        $userdirectorypath = "uploads/".$username.'/';
+        $dirlists = glob(public_path($userdirectorypath) . '*' , GLOB_ONLYDIR);
+        foreach ($dirlists as $key => $value) {
+          $dirlists[$key] = str_replace(public_path($userdirectorypath),"",$value);
+        }
+
+        // date_default_timezone_set('US/Central');
+        // $today = date("Y-m-d");
+        // $newDate = date("dmY", strtotime($today));
+        $newDate = "No directoy";
+        rsort($dirlists);
+        if($dirlists){
+            $newDate = $dirlists[0];
+        }
+
+        $filepath = "uploads/".$username."/".$newDate;
 
         $files = array();
 
@@ -36,19 +48,21 @@ class MyfilesController extends Controller
             }
         }
 
-        return view('myfile', compact('today', 'files'));
+        // return view('myfile', compact('today', 'files', 'dirlists'));
+        return view('myfile', compact('files', 'dirlists', 'newDate'));
 
     }
 
     public function download($date){
 
-        $newDate = date("dmY", strtotime($date));
+        // $newDate = date("dmY", strtotime($date));
+        $newDate = $date;
 
         $username = Auth::user()->name;
-        $filepath = "/uploads/".$username."/".$newDate;
+        $filepath = "uploads/".$username."/".$newDate;
 
         if(file_exists(public_path($filepath))){
-            $zip_file = "/uploads/".$username.'/'.$date.'.zip';
+            $zip_file = "uploads/".$username.'/'.$date.'.zip';
             $zip = new ZipArchive();
             $zip->open(public_path($zip_file), \ZipArchive::CREATE | \ZipArchive::OVERWRITE);
 
@@ -75,7 +89,7 @@ class MyfilesController extends Controller
         $newDate = date("dmY", strtotime($today));
 
         $username = Auth::user()->name;
-        $filepath = "/uploads/".$username."/".$newDate;
+        $filepath = "uploads/".$username."/".$newDate;
 
         $files = array();
 
@@ -91,5 +105,34 @@ class MyfilesController extends Controller
 
         return view('myfile', compact('today', 'files'));
 
+    }
+
+    public function showfiles($date){
+      $username = Auth::user()->name;
+      $userdirectorypath = "uploads/".$username.'/';
+      $dirlists = glob(public_path($userdirectorypath) . '*' , GLOB_ONLYDIR);
+      foreach ($dirlists as $key => $value) {
+        $dirlists[$key] = str_replace(public_path($userdirectorypath),"",$value);
+      }
+      rsort($dirlists);
+
+      $newDate = $date;
+
+      $filepath = "uploads/".$username."/".$newDate;
+
+      $files = array();
+
+      if(file_exists(public_path($filepath))){
+          $filesInFolder  = File::files(public_path($filepath));
+          foreach($filesInFolder as $path) {
+              $file = pathinfo($path);
+              $file['linkTarget'] = $filepath.'/'.$path->getFilename();
+              $file['size'] = floor($path->getSize()/1024).' Kb';
+              $files[] = $file;
+          }
+      }
+
+      // return view('myfile', compact('today', 'files', 'dirlists'));
+      return view('myfile', compact('files', 'dirlists', 'newDate'));
     }
 }
