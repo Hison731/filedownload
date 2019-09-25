@@ -13,7 +13,9 @@
             </ul>
         </div>
         <div class="row">
-            <a class="btn btn-sm btn-success mb-2 ml-2" href="{{ route('download', $newDate) }}">Download All</a>
+            <div class="col-md-12">
+                <a class="btn btn-sm btn-success mb-2 ml-2" href="{{ route('download', $newDate) }}">Download All</a>
+            </div>
             {{-- <div class="col-md-5">
                 <form action="{{ route('myaccount') }}" method="post" class="form-inline">
                     @csrf
@@ -48,7 +50,7 @@
                                     <tr>
                                         <td>{{++$key}}</td>
                                         <td>{{$file['basename']}}</td>
-                                        <td>{{$file['extension']}}</td>
+                                        <td><i class="fas {{$file['image']}}" style="color: green; margin-right: 5px; font-size: 16px;"></i> {{$file['extension']}}</td>
                                         <td>{{$file['size']}}</td>
                                         <td><a class="btn btn-success btn-sm" href="/{{$file['linkTarget']}}" target="_blank">View <i class="fa fa-eye"></i></a></td>
                                     </tr>

@@ -21,6 +21,18 @@ class MyfilesController extends Controller
         $username = Auth::user()->name;
         $userdirectorypath = "uploads/".$username.'/';
         $dirlists = glob(public_path($userdirectorypath) . '*' , GLOB_ONLYDIR);
+        $count = count($dirlists);
+        for ($i=0; $i <$count ; $i++) {
+          // code...
+          for ($j=$i+1; $j <$count ; $j++) {
+            if(filemtime($dirlists[$i]) < filemtime($dirlists[$j])){
+              $temp = $dirlists[$i];
+              $dirlists[$i] = $dirlists[$j];
+              $dirlists[$j] = $temp;
+            }
+          }
+        }
+
         foreach ($dirlists as $key => $value) {
           $dirlists[$key] = str_replace(public_path($userdirectorypath),"",$value);
         }
@@ -29,7 +41,7 @@ class MyfilesController extends Controller
         // $today = date("Y-m-d");
         // $newDate = date("dmY", strtotime($today));
         $newDate = "No directoy";
-        rsort($dirlists);
+
         if($dirlists){
             $newDate = $dirlists[0];
         }
@@ -40,13 +52,24 @@ class MyfilesController extends Controller
 
         if(file_exists(public_path($filepath))){
             $filesInFolder  = File::files(public_path($filepath));
+
             foreach($filesInFolder as $path) {
                 $file = pathinfo($path);
                 $file['linkTarget'] = $filepath.'/'.$path->getFilename();
                 $file['size'] = floor($path->getSize()/1024).' Kb';
+                $file['image'] = 'fa-file-alt';
+                if($file['extension'] == 'jpg' || $file['extension'] == 'png' || $file['extension'] == 'jpeg') $file['image'] = 'fa-images';
+                if($file['extension'] == 'pdf') $file['image'] = 'fa-file-pdf';
+                if($file['extension'] == 'doc' || $file['extension'] == 'txt') $file['image'] = 'fa-file-word';
                 $files[] = $file;
+
             }
         }
+
+        // <i class="fas fa-file-word"></i>
+
+        // dump($files);
+        // die();
 
         // return view('myfile', compact('today', 'files', 'dirlists'));
         return view('myfile', compact('files', 'dirlists', 'newDate'));
@@ -111,10 +134,20 @@ class MyfilesController extends Controller
       $username = Auth::user()->name;
       $userdirectorypath = "uploads/".$username.'/';
       $dirlists = glob(public_path($userdirectorypath) . '*' , GLOB_ONLYDIR);
+      $count = count($dirlists);
+      for ($i=0; $i <$count ; $i++) {
+        // code...
+        for ($j=$i+1; $j <$count ; $j++) {
+          if(filemtime($dirlists[$i]) < filemtime($dirlists[$j])){
+            $temp = $dirlists[$i];
+            $dirlists[$i] = $dirlists[$j];
+            $dirlists[$j] = $temp;
+          }
+        }
+      }
       foreach ($dirlists as $key => $value) {
         $dirlists[$key] = str_replace(public_path($userdirectorypath),"",$value);
       }
-      rsort($dirlists);
 
       $newDate = $date;
 
@@ -128,6 +161,10 @@ class MyfilesController extends Controller
               $file = pathinfo($path);
               $file['linkTarget'] = $filepath.'/'.$path->getFilename();
               $file['size'] = floor($path->getSize()/1024).' Kb';
+              $file['image'] = 'fa-file-alt';
+              if($file['extension'] == 'jpg' || $file['extension'] == 'png' || $file['extension'] == 'jpeg') $file['image'] = 'fa-images';
+              if($file['extension'] == 'pdf') $file['image'] = 'fa-file-pdf';
+              if($file['extension'] == 'doc' || $file['extension'] == 'txt') $file['image'] = 'fa-file-word';
               $files[] = $file;
           }
       }
