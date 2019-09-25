@@ -16,21 +16,8 @@
             <div class="col-md-12">
                 <a class="btn btn-sm btn-success mb-2 ml-2" href="{{ route('download', $newDate) }}">Download All</a>
             </div>
-            {{-- <div class="col-md-5">
-                <form action="{{ route('myaccount') }}" method="post" class="form-inline">
-                    @csrf
-
-                    <label for="date" class="font-weight-bold mr-sm-2 mb-2">Select Date:</label>
-                    <input type="date" class="form-control mb-2 mr-sm-2" id="date" name="date" value="{{ $today }}">
-                    <button type="submit" class="btn btn-sm btn-success mb-2">Check</button>
-                    @if (count($files) > 0)
-                    
-                    @endif
-
-                </form>
-
-            </div> --}}
             
+
             <div class="col-md-12">
 
                 <div class="tile">

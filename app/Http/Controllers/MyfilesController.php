@@ -37,9 +37,6 @@ class MyfilesController extends Controller
           $dirlists[$key] = str_replace(public_path($userdirectorypath),"",$value);
         }
 
-        // date_default_timezone_set('US/Central');
-        // $today = date("Y-m-d");
-        // $newDate = date("dmY", strtotime($today));
         $newDate = "No directoy";
 
         if($dirlists){
@@ -66,19 +63,11 @@ class MyfilesController extends Controller
             }
         }
 
-        // <i class="fas fa-file-word"></i>
-
-        // dump($files);
-        // die();
-
-        // return view('myfile', compact('today', 'files', 'dirlists'));
         return view('myfile', compact('files', 'dirlists', 'newDate'));
 
     }
 
     public function download($date){
-
-        // $newDate = date("dmY", strtotime($date));
         $newDate = $date;
 
         $username = Auth::user()->name;
