@@ -7,7 +7,9 @@
 <link rel="stylesheet" type="text/css"
 	href="{{asset('template/css/main.css')}}">
 <link rel="stylesheet" type="text/css"
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		href="{{asset('template/css/style.css')}}">
+<link rel="stylesheet" type="text/css"
+	href="{{asset('fontawesome/css/all.min.css')}}">
 </head>
 <body>
 
@@ -24,7 +26,6 @@
 
     @yield('script')
 
-    <script src='https://www.google.com/recaptcha/api.js' async defer></script>
 	<!-- The javascript plugin to display page loading on top-->
 	<script type="text/javascript">
                   // Login Page Flipbox control

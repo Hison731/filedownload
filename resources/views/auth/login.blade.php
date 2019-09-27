@@ -17,7 +17,7 @@
           <?php \Session::forget('error');?>
       @endif
 			<h3 class="login-head">
-				<i class="fa fa-lg fa-fw fa-sign-in"></i>SIGN IN
+				<i class="fas fa-lg fa-fw fa-sign-in-alt"></i>SIGN IN
 			</h3>
 			<div class="form-group">
 				<label class="control-label">Email</label> <input id="email"
@@ -38,13 +38,11 @@
 						$message }}</strong>
 				</span> @enderror
 			</div>
-
-            <div class="g-recaptcha" data-sitekey="6LeiQbYUAAAAAK5_u38fuWjR33K35eZ5v2ndLymu"></div>
-
+			
 
 			<div class="form-group btn-container">
 				<button class="btn btn-success btn-block">
-					<i class="fa fa-sign-in fa-lg fa-fw"></i>SIGN IN
+					<i class="fas fa-lg fa-fw fa-sign-in-alt"></i>SIGN IN
 				</button>
 			</div>
 
@@ -58,20 +56,4 @@
         &copy; Copyright 2019 - MyCompany
     </div>
 </section>
-@endsection
-
-@section('script')
-{{--    <script type="text/javascript">--}}
-{{--        $(document).ready(function () {--}}
-{{--            $(".login-form").submit(function (e) {--}}
-{{--                if (grecaptcha.getResponse() == ""){--}}
-{{--                    e.preventDefault();--}}
-{{--                    alert("Please check the recaptcha!");--}}
-{{--                } else {--}}
-
-{{--                }--}}
-{{--            })--}}
-{{--        })--}}
-{{--    </script>--}}
-
 @endsection

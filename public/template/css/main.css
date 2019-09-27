@@ -13613,17 +13613,17 @@ be a descendant of the grid when it is being dragged.
     transition: background-color 0.3s ease;
 }
 
+.app-sidebar__toggle .fas{
+  font-size: 21px;
+  line-height: 50px;
+}
+
 @media (max-width: 767px) {
     .app-sidebar__toggle {
         -webkit-box-ordinal-group: 0;
         -ms-flex-order: -1;
         order: -1;
     }
-}
-
-.app-sidebar__toggle:before {
-    content: "\f0c9";
-    font-size: 21px;
 }
 
 .app-sidebar__toggle:focus, .app-sidebar__toggle:hover {

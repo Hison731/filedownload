@@ -13,3 +13,11 @@
 body {
   padding-top: 60px;
 }
+
+.match{
+  color: green;
+}
+
+.password_check{
+  color: red;
+}

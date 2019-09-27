@@ -33,7 +33,7 @@ class UsersContoller extends Controller
         $this->validate($request, [
             'name' => ['required', 'string', 'max:255', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:6', 'confirmed'],
+            'password' => ['required', 'string', "regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@()$%^&*=_{}[\]:;\"'|\\<>,.\/~`±§+-]).{12,30}$/u", 'confirmed'],
         ]);
 
         User::create([
@@ -64,7 +64,7 @@ class UsersContoller extends Controller
         $this->validate($request, [
             'name' => ['required', 'string', 'max:255', Rule::unique('users')->ignore($request['id'])],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($request['id'])],
-            'password' => ['confirmed'],
+            'password' => ["regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@()$%^&*=_{}[\]:;\"'|\\<>,.\/~`±§+-]).{12,30}$/u", 'confirmed'],
         ]);
 
         $user = User::find($request['id']);
