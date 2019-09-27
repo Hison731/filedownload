@@ -14,9 +14,9 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <a class="btn btn-sm btn-success mb-2 ml-2" href="{{ route('download', $newDate) }}">Download All</a>
+                <a class="btn btn-sm btn-success mb-2" href="{{ route('download', $newDate) }}">Download All</a>
             </div>
-            
+
 
             <div class="col-md-12">
 
